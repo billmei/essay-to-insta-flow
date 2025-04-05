@@ -1,6 +1,33 @@
 # text2ig
 Paste text to convert to images for uploading to Instagram
 
+## Project Deployment
+
+### GitHub Pages Deployment
+
+This project is configured for easy deployment to GitHub Pages:
+
+1. Enable GitHub Pages in your repository settings
+   - Go to your repository's Settings > Pages
+   - Choose "GitHub Actions" as the source
+
+2. Push your changes to the `main` branch
+
+The GitHub Actions workflow will automatically:
+- Install dependencies
+- Build the project
+- Deploy to GitHub Pages
+
+### Manual Deployment
+
+If you prefer manual deployment:
+
+```sh
+# Build the project
+npm run build
+
+# Deploy the contents of the dist folder to your GitHub Pages
+```
 
 ## Project info
 
