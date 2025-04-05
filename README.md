@@ -1,4 +1,6 @@
-# Welcome to your Lovable project
+# text2ig
+Paste text to convert to images for uploading to Instagram
+
 
 ## Project info
 
