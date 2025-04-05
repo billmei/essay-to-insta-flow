@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 260 84% 60%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -35,19 +38,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -97,5 +93,47 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom classes for our Instagram post generator */
+.gradient-blue-purple {
+  background: linear-gradient(135deg, #E5DEFF 0%, #D3E4FD 100%);
+}
+
+.gradient-peach-cream {
+  background: linear-gradient(135deg, #FDE1D3 0%, #FEF7CD 100%);
+}
+
+.gradient-green-blue {
+  background: linear-gradient(135deg, #F2FCE2 0%, #D3E4FD 100%);
+}
+
+.gradient-pink-purple {
+  background: linear-gradient(135deg, #FFDEE2 0%, #E5DEFF 100%);
+}
+
+.instagram-post {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.instagram-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .instagram-post {
+    padding: 20px;
+  }
+  
+  .instagram-text {
+    font-size: 1rem;
   }
 }
