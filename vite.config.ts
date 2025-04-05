@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/text2ig/", // Add this line for GitHub Pages
+  base: "/essay-to-insta-flow/", // Add this line for GitHub Pages
   server: {
     host: "::",
     port: 8080,
