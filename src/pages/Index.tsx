@@ -40,7 +40,7 @@ const Index = () => {
         </div>
         
         <footer className="mt-16 text-center text-sm text-muted-foreground">
-          <p>Created with ❤️ for Instagram content creators</p>
+          <p>Created by <a href="https://billmei.net">Bill Mei</a></p>
         </footer>
       </div>
     </div>
