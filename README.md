@@ -1,102 +1,34 @@
-# text2ig
-Paste text to convert to images for uploading to Instagram
+# Essay to Instagram
 
-## Project Deployment
+Paste an essay and turn it into a series of square images for posting to Instagram.
 
-### GitHub Pages Deployment
+**Live:** https://billmei.github.io/essay-to-insta-flow/
 
-This project is configured for easy deployment to GitHub Pages:
+The text is split into ~300-character chunks (keeping paragraphs together where possible), drawn onto canvases with your choice of background, font, size and colour, and downloaded as `instagram-post-N.png`. Everything runs in the browser.
 
-1. Enable GitHub Pages in your repository settings
-   - Go to your repository's Settings > Pages
-   - Choose "GitHub Actions" as the source
+## Development
 
-2. Push your changes to the `main` branch
-
-The GitHub Actions workflow will automatically:
-- Install dependencies
-- Build the project
-- Deploy to GitHub Pages
-
-### Manual Deployment
-
-If you prefer manual deployment:
+Requires [Bun](https://bun.sh).
 
 ```sh
-# Build the project
-npm run build
-
-# Deploy the contents of the dist folder to your GitHub Pages
+bun install
+bun run dev      # start a dev server
+bun run build    # type-check and build to dist/
+bun run preview  # serve the production build
 ```
 
-## Project info
+Built with [Preact](https://preactjs.com), [Vite](https://vite.dev) and TypeScript. There are no other dependencies.
 
-**URL**: https://lovable.dev/projects/60df479d-362c-4f73-9271-0de9211c1689
+| File | Purpose |
+| --- | --- |
+| `src/App.tsx` | Page layout and essay input |
+| `src/StyleOptions.tsx` | Background, font and colour controls |
+| `src/PreviewGallery.tsx` | Post preview, pagination and download |
+| `src/post.ts` | Style presets, text splitting and canvas rendering |
+| `src/style.css` | All styles |
 
-## How can I edit this code?
+## Deployment
 
-There are several ways of editing your application.
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site with Bun and publishes `dist/` to GitHub Pages. In the repository settings, **Pages → Source** must be set to **GitHub Actions**.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/60df479d-362c-4f73-9271-0de9211c1689) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/60df479d-362c-4f73-9271-0de9211c1689) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The site is served from `/essay-to-insta-flow/`; if the repository is renamed, update `base` in `vite.config.ts`.
