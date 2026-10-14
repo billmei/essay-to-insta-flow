@@ -1,27 +1,45 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { useState } from "preact/hooks";
+import { DEFAULT_STYLE, splitText, type PostStyle } from "./post";
+import { StyleOptions } from "./StyleOptions";
+import { PreviewGallery } from "./PreviewGallery";
 
-const queryClient = new QueryClient();
+export function App() {
+  const [text, setText] = useState("");
+  const [chunks, setChunks] = useState<string[]>([]);
+  const [style, setStyle] = useState<PostStyle>(DEFAULT_STYLE);
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename="/essay-to-insta-flow">
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <div class="container">
+      <header class="header">
+        <h1>Essay to Instagram</h1>
+        <p>Transform your long-form essays into beautiful, shareable Instagram posts</p>
+      </header>
 
-export default App;
+      <main class="layout">
+        <div class="column">
+          <section class="card">
+            <h2>Paste Your Essay</h2>
+            <textarea
+              placeholder="Paste your long-form essay here..."
+              value={text}
+              onInput={(e) => setText(e.currentTarget.value)}
+            />
+            <div class="card-footer">
+              <button class="button" disabled={!text.trim()} onClick={() => setChunks(splitText(text))}>
+                Generate Instagram Posts
+              </button>
+            </div>
+          </section>
+          <StyleOptions style={style} onChange={setStyle} />
+        </div>
+        <div>
+          <PreviewGallery chunks={chunks} style={style} />
+        </div>
+      </main>
+
+      <footer class="footer">
+        Created by <a href="https://billmei.net">Bill Mei</a>
+      </footer>
+    </div>
+  );
+}
